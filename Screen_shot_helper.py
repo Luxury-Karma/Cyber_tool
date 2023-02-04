@@ -146,13 +146,10 @@ def screen_shot_helper_save(path, date, names, pdf_img_name, text_names, comment
 
 
 
-def screen_shot_helper():
+def screen_shot_helper(regex_full_date,regex_partial_date,date_hour_separator):
 
     # variables
     stop_key = ']'
-    regex_full_date = '(^[^.]*.)'
-    regex_partial_date = '(^[^H]*.)'
-    date_hour_separator = 'H'
     date = Functions.get_date(Functions.get_date_model(regex_full_date, date_hour_separator), regex_partial_date,
                               date_hour_separator)
     picture_key,\

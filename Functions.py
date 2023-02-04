@@ -1,7 +1,6 @@
 import os
 import re
 import zipfile
-
 from PIL import Image
 import datetime
 
@@ -57,7 +56,12 @@ def creat_folder(path,name):
 
 
 # allow the user to write text
-def text_from_user(name_of_the_file,path,name):
+def text_from_user(name_of_the_file,path):
+    '''
+    :param name_of_the_file: name of the file
+    :param path: where it is
+    :return:
+    '''
     user_text = []
     new_text = ''
     print(f'Comments for the file {name_of_the_file}, enter :qwa to quite the comments mode')
@@ -69,7 +73,7 @@ def text_from_user(name_of_the_file,path,name):
         else:
             print(f'Comments Over command {new_text} ')
     try:
-        file_name = f'{path}\\{name}.txt'
+        file_name = f'{path}\\{name_of_the_file}.txt'
         text_file = open(f'{file_name}','w')
         for e in user_text:
             text_file.write(f'{e}\n')
