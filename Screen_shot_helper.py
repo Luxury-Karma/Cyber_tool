@@ -110,13 +110,16 @@ def screen_shot_helper_listener(picture_key, path, comments, personal_name, stop
                     print(f'A screenshot {name} was taken')
                     # APPLY COMMENTARY SETTING
                     if comments:
-                        Comments_helper.comments_helper(regex_full_date,regex_partial_date,date_hour_separator,path)
+                        Functions.comments_helper(f'Text_{name}.txt',path)
                         text_names.append(f'Text_{name}')
+
                 except:  # Lets user know the screenshot was unnable to be taken
                     print("A screenshot was unable to  be taken")
-                    if keyboard.is_pressed(stop_key):  # listen for the ` to be pressed signaling the session
-                        print(f"you have pressed {stop_key}. Breaking loop now")
-                        break
+            if keyboard.is_pressed(stop_key):  # listen for the ` to be pressed signaling the session
+
+                print(f"you have pressed {stop_key}. Breaking loop now\nsave path {path}")
+                break
+
 
         except:  # Doesnt really work
             print('error')
@@ -138,7 +141,6 @@ def screen_shot_helper_save(path, date, names, pdf_img_name, text_names, comment
             print('PDF saved\nA full commentary have been created')
             Functions.compress_files(Functions.get_all_folder_files(f'{path}\\{date}'), f'Compress_{pdf_img_name}',
                                      f'{path}\\{date}')
-        input("press Enter to end ")
 
 
     except:  # if the screenshots cant be added to the word doc
