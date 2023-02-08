@@ -5,6 +5,7 @@ from PIL import Image
 import datetime
 
 
+
 # Find all the PNG file in a specific folder and return all the image open
 def get_picture(img_path):
     files = []
@@ -54,33 +55,46 @@ def creat_folder(path,name):
     except:
         print("New folder either already exist or was unable to be created for screenshots")
 
+def comments_helper(name_of_the_file:str, path:str):
+    file = f'{path}\\{name_of_the_file}'
+    print(file)
+    with open(file,'w') as ef:
+        ef.write(f'Comment for : {name_of_the_file}')
+    os.system(file)
+
+
+
 
 # allow the user to write text
-def text_from_user(name_of_the_file,path):
-    '''
-    :param name_of_the_file: name of the file
-    :param path: where it is
-    :return:
-    '''
-    user_text = []
-    new_text = ''
-    print(f'Comments for the file {name_of_the_file}, enter :qwa to quite the comments mode')
-    print(f'enter ":wa" to quit: \n')
-    while new_text != ':wa':
-        new_text = input()
-        if new_text != ':wa':
-            user_text.append(new_text)
-        else:
-            print(f'Comments Over command {new_text} ')
-    try:
-        file_name = f'{path}\\{name_of_the_file}.txt'
-        text_file = open(f'{file_name}','w')
-        for e in user_text:
-            text_file.write(f'{e}\n')
-        file_name.close()
-    except:
-        print('file allready existed')
-    return user_text
+#def comments_helper(name_of_the_file,path):
+#    '''
+#    :param name_of_the_file: name of the file
+#    :param path: where it is
+#    :return:
+#    '''
+#    path_name = f'{path}\\{name_of_the_file}'
+#    os.open(f'{path}\\{name_of_the_file}.txt','x')
+#    user_text = []
+#    new_text = ''
+#    print(f'Comments for the file {name_of_the_file}, enter :qwa to quite the comments mode')
+#    print(f'enter ":wa" to quit: \n')
+#    while new_text != ':wa':
+#        new_text = input()
+#        if new_text != ':wa':
+#            user_text.append(new_text)
+#        else:
+#            print(f'Comments Over command {new_text} ')
+#    try:
+#        file_name = f'{path}\\{name_of_the_file}.txt'
+#        text_file = open(f'{file_name}','w')
+#        for e in user_text:
+#            text_file.write(f'{e}\n')
+#        file_name.close()
+#    except:
+#        print('file allready existed')
+#    os.system('cmd /k "exit"')
+
+#    return user_text
 
 
 #send only the day date

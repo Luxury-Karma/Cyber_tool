@@ -4,6 +4,7 @@ import time
 import keyboard
 import pyautogui
 import Functions
+import Comments_helper
 
 """
     Screen Shot helper do : 
@@ -81,7 +82,7 @@ def screen_shot_helper_name_handler(personal_name, number_of_pictures):
 
 
 # listen key to take picture
-def screen_shot_helper_listener(picture_key, path, comments, personal_name, stop_key):
+def screen_shot_helper_listener(picture_key, path, comments, personal_name, stop_key,regex_full_date:str,regex_partial_date:str,date_hour_separator:str):
     '''
     :param picture_key: The key to press to take screen shot
     :param path: Directory to put all files
@@ -109,13 +110,13 @@ def screen_shot_helper_listener(picture_key, path, comments, personal_name, stop
                     print(f'A screenshot {name} was taken')
                     # APPLY COMMENTARY SETTING
                     if comments:
-                        Functions.text_from_user(name, path, f'Text_{name}')
+                        Comments_helper.comments_helper(regex_full_date,regex_partial_date,date_hour_separator,path)
                         text_names.append(f'Text_{name}')
                 except:  # Lets user know the screenshot was unnable to be taken
                     print("A screenshot was unable to  be taken")
-            if keyboard.is_pressed(stop_key):  # listen for the ` to be pressed signaling the session
-                print(f"you have pressed {stop_key}. Breaking loop now")
-                break
+                    if keyboard.is_pressed(stop_key):  # listen for the ` to be pressed signaling the session
+                        print(f"you have pressed {stop_key}. Breaking loop now")
+                        break
 
         except:  # Doesnt really work
             print('error')
@@ -160,7 +161,7 @@ def screen_shot_helper(regex_full_date,regex_partial_date,date_hour_separator):
 
     screen_shot_helper_make_directory(path,date)
     #add names of the files to correct list
-    names,text_names = screen_shot_helper_listener(picture_key,path,comments,personal_name,stop_key)
+    names,text_names = screen_shot_helper_listener(picture_key,path,comments,personal_name,stop_key,regex_full_date,regex_partial_date,date_hour_separator)
 
     # Creates a pdf doc and adds the screenshots
     screen_shot_helper_save(path,date,names,pdf_img_name,text_names,comments)
