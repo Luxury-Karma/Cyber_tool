@@ -4,6 +4,7 @@ import time
 import keyboard
 import pyautogui
 import Functions
+import Comments_helper
 
 """
     Screen Shot helper do : 
@@ -147,7 +148,7 @@ def screen_shot_helper_save(path, date, names, pdf_img_name, text_names, comment
         input("session over")
 
 
-# Set up the screenshot manager
+
 def screen_shot_helper(regex_full_date,regex_partial_date,date_hour_separator):
 
     # variables
